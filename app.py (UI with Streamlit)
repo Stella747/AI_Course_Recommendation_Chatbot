@@ -1,0 +1,17 @@
+import streamlit as st
+from model import recommend_courses
+
+st.set_page_config(page_title="AI Course Chatbot")
+
+st.title("🎓 AI Course Recommendation Chatbot")
+
+user_input = st.text_input("What do you want to learn?")
+
+if user_input:
+    results = recommend_courses(user_input)
+
+    st.subheader("Recommended Courses:")
+    for i, row in results.iterrows():
+        st.write(f"### {row['name']}")
+        st.write(row['description'])
+        st.write("---")
